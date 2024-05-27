@@ -10,29 +10,25 @@ export class Viewer {
   private readonly _camera = new THREE.PerspectiveCamera();
 
   private readonly _imageBitmapLoader = new THREE.ImageBitmapLoader();
-  private readonly _ktx2Loader = new KTX2Loader().setTranscoderPath('libs/').detectSupport(this._renderer);
+  private readonly _ktx2Loader = new KTX2Loader().setTranscoderPath('/').detectSupport(this._renderer);
 
-  private readonly _ktx2Mesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
-  private readonly _pngMesh: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshBasicMaterial>;
+  private readonly _ktx2Mesh: THREE.Mesh;
+  private readonly _pngMesh: THREE.Mesh;
 
   constructor() {
     this._scene.background = new THREE.Color(0xffffff);
     this._imageBitmapLoader.setOptions({ imageOrientation: 'flipY' });
     this.configureRenderer();
     this.configureCamera();
-    //const controls = new OrbitControls(this._camera, this._renderer.domElement);
 
-    //this._ktx2Mesh = new Ktx2Mesh('assets/A-plan1.ktx2', this._ktx2Loader);
-    this._ktx2Mesh = new Ktx2Mesh('assets/small-test.ktx2', this._ktx2Loader);
+    this._ktx2Mesh = new Ktx2Mesh('small-test.ktx2', this._ktx2Loader);
     this._scene.add(this._ktx2Mesh);
 
-    //this._pngMesh = new PngMesh('assets/test.png', this._imageBitmapLoader);
-    this._pngMesh = new PngMesh('assets/small-test.png', this._imageBitmapLoader);
+    this._pngMesh = new PngMesh('small-test.png', this._imageBitmapLoader);
     this._scene.add(this._pngMesh);
 
     const animate = () => {
       requestAnimationFrame(animate);
-      //controls.update();
       this._renderer.render(this._scene, this._camera);
     };
 
