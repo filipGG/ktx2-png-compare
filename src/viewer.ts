@@ -1,16 +1,15 @@
 import * as THREE from 'three';
 import { KTX2Loader } from 'three/addons/loaders/KTX2Loader.js';
-import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { Ktx2Mesh } from './ktx2-mesh';
 import { PngMesh } from './png-mesh';
 
 export class Viewer {
-  private readonly _renderer = new THREE.WebGLRenderer({ antialias: false });
+  private readonly _renderer = new THREE.WebGLRenderer();
   private readonly _scene = new THREE.Scene();
   private readonly _camera = new THREE.PerspectiveCamera();
 
   private readonly _imageBitmapLoader = new THREE.ImageBitmapLoader();
-  private readonly _ktx2Loader = new KTX2Loader().setTranscoderPath('/').detectSupport(this._renderer);
+  private readonly _ktx2Loader = new KTX2Loader().setTranscoderPath('/ktx2-png-compare/').detectSupport(this._renderer);
 
   private readonly _ktx2Mesh: THREE.Mesh;
   private readonly _pngMesh: THREE.Mesh;
@@ -64,7 +63,7 @@ export class Viewer {
     const { innerWidth, innerHeight } = window;
     this._camera.aspect = innerWidth / innerHeight;
     this._camera.near = 0.1;
-    this._camera.far = 1_000_000;
+    this._camera.far = 1000;
     this._camera.position.set(0, 0, 200);
 
     this._camera.updateProjectionMatrix();
