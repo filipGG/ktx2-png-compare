@@ -1,0 +1,22 @@
+{
+  "name": "ktx-viewer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "@types/three": "^0.160.0",
+    "@vitest/browser": "^1.4.0",
+    "@vitest/coverage-v8": "^1.4.0",
+    "prettier": "^3.2.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vitest": "^1.4.0",
+    "webdriverio": "^8.35.1"
+  },
+  "dependencies": {
+    "three": "^0.160.0"
+  }
+}
